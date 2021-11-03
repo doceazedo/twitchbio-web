@@ -1,0 +1,1 @@
+export { default as TwitchIcon } from './twitch.svelte';

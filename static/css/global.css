@@ -1,0 +1,9 @@
+body {
+  background-color: #23272a;
+}
+
+body,
+button {
+  font-family: 'Roboto Slab', sans-serif, 'Apple Color Emoji', 'Segoe UI', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-size: 1rem;
+}

@@ -1,0 +1,19 @@
+{
+  "name": "twichbio-web",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "svelte-kit dev",
+    "build": "svelte-kit build",
+    "preview": "svelte-kit preview",
+    "lint": "eslint --ignore-path .gitignore ."
+  },
+  "devDependencies": {
+    "@sveltejs/kit": "next",
+    "eslint": "^7.32.0",
+    "eslint-plugin-svelte3": "^3.2.1",
+    "sass": "^1.43.4",
+    "svelte": "^3.42.6",
+    "svelte-preprocess": "^4.9.8"
+  },
+  "type": "module"
+}
