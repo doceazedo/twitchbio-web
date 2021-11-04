@@ -1,6 +1,18 @@
 <script>
-  import { Button, Footer, DevelopersSection, ProductSection } from '$lib/common';
+  import { session } from '$app/stores';
+  import {
+    Button,
+    DevelopersSection,
+    Footer,
+    ProductSection
+  } from '$lib/common';
   import { TwitchIcon } from '$lib/icons';
+
+  $: user = $session.user;
+
+  const signIn = () => {
+    location.assign('/api/auth/signin/twitch?redirect=/');
+  }
 </script>
 
 <ProductSection
@@ -16,10 +28,16 @@
   paragraph="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet laboriosam facere omnis iure aspernatur deleniti modi id, libero voluptas et facilis blanditiis expedita commodi itaque adipisci iusto dolores quo quaerat!"
   invert
 >
-  <Button href="/login">
-    <TwitchIcon />
-    Conectar com Twitch
-  </Button>
+  {#if user}
+    <Button href="/profile">
+      Go to the dashboard
+    </Button>
+  {:else}
+    <Button on:click={signIn}>
+      <TwitchIcon />
+      Login with Twitch
+    </Button>
+  {/if}
 </ProductSection>
 
 <ProductSection

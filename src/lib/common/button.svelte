@@ -7,7 +7,7 @@
     <slot />
   </a>
 {:else}
-  <button>
+  <button on:click>
     <slot />
   </button>
 {/if}

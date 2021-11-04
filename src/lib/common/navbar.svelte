@@ -1,6 +1,18 @@
 <script>
+  import { signOut as authSignOut } from 'sk-auth/client';
+  import { session } from '$app/stores';
   import { Button } from '$lib/common';
   import { TwitchIcon } from '$lib/icons';
+
+  $: user = $session.user;
+
+  const signIn = () => {
+    location.assign('/api/auth/signin/twitch?redirect=/');
+  }
+
+  const signOut = () => {
+    authSignOut().then(session.set);
+  }
 </script>
 
 <header>
@@ -19,10 +31,17 @@
         <a href="/">Página C</a>
       </li>
       <li>
-        <Button href="/login">
-          <TwitchIcon />
-          Conectar com Twitch
-        </Button>
+        {#if user}
+          <div class="logged-in" on:click={signOut}>
+            {user.display_name}
+            <img src={user.profile_image_url} alt="">
+          </div>
+        {:else}
+          <Button on:click={signIn}>
+            <TwitchIcon />
+            Login with Twitch
+          </Button>
+        {/if}
       </li>
     </ul>
   </nav>
@@ -72,4 +91,16 @@
             height: 100%
             text-decoration: none
             color: $light
+
+          .logged-in
+            display: flex
+            align-items: center
+            color: $light
+            cursor: pointer
+
+            img
+              height: 3rem
+              width: 3rem
+              margin-left: 0.5rem
+              border-radius: 50%
 </style>
